@@ -2,7 +2,8 @@
 User.create!(name:  "Example User",
              email: "example@railstutorial.org",
              password:              "foobar",
-             password_confirmation: "foobar")
+             password_confirmation: "foobar",
+             admin: true)
 puts "added main example user"
 
 # Generate a bunch of additional users.
