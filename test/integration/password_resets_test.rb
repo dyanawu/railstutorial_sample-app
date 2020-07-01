@@ -45,7 +45,6 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
     assert_template 'password_resets/edit'
     assert_select "input[name=email][type=hidden][value=?]", user.email
 
-
     # invalid password & confirmation
     patch password_reset_path(user.reset_token),
           params: { email: user.email,
@@ -69,6 +68,7 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
     assert is_logged_in?
     assert_not flash.empty?
     assert_redirected_to user
+    assert_nil user.reload.reset_digest
   end
 
   test "expired token" do
