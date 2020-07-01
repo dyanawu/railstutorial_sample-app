@@ -31,6 +31,7 @@ class PasswordResetsController < ApplicationController
       @user.forget
       reset_session
       log_in @user
+      @user.update_attribute(:reset_digest, nil)
       flash[:success] = "Password has been reset."
       redirect_to @user
     else
@@ -58,7 +59,7 @@ class PasswordResetsController < ApplicationController
   def check_expiration
     if @user.password_reset_expired?
       flash[:danger] = "Password reset has expired."
-      rediect_to new_password_reset_url
+      redirect_to new_password_reset_url
     end
   end
 
