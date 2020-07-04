@@ -89,6 +89,7 @@ class UserTest < ActiveSupport::TestCase
     assert_not derp.following?(archer)
     derp.follow(archer)
     assert derp.following?(archer)
+    assert archer.followers.include?(derp)
     derp.unfollow(archer)
     assert_not derp.following?(archer)
   end
