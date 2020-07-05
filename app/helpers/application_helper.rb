@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   # Full page title helper
   def full_title(page_title = "")
     base_title = "RoR Tutorial Sample App"
